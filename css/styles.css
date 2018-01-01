@@ -1,5 +1,6 @@
 body{
 	margin: 0px;
+	font-family: 'Raleway';
 }
 
 #modal{
@@ -36,11 +37,15 @@ body{
 */}
 
 #inputDiv{
-	height: 100px;
+	display: none;
+	height: 125px;
 	width: 250px;
-	background-color: #e6e6e6;
+	background-color: #f2f2f2;
+	box-shadow: inset 0 0 25px #000000;
 	position: fixed;
 	z-index: 2;
+	justify-content: center;
+	align-items: center;
 }
 
 #puzzleContainer{
@@ -67,8 +72,26 @@ body{
 }
 
 #point{
+	display: none;
 	position: fixed;
 	bottom: 0px;
 	left: 0px;	
 	z-index: 2;
+	margin-left: 15px;
+}
+
+#timer{
+	display: none;
+	position: fixed;
+	bottom: 40px;
+	left: 0px;
+	z-index: 2;
+	margin-left: 15px;
+}
+
+#change{
+	display: none;
+	position: fixed;
+	z-index: 2;
+	top: 86px;
 }

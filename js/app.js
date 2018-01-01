@@ -18,10 +18,19 @@ start.onclick = function(){
 
 	var container = document.getElementById('puzzleContainer');
 	var input = document.getElementById('input');
+	var inputDiv = document.getElementById('inputDiv');
 	var point = document.getElementById('point');
+	var timer = document.getElementById('timer');
+	var change = document.getElementById('change');
 	var arr = [];
 	var score = 1;
+	var timeLeft = 60;
+	var timeKeeper = setInterval(timeCheck, 1000);
 
+	timer.style.display = 'inherit';
+	point.style.display = 'inherit';
+	inputDiv.style.display = 'flex';
+	change.style.display = 'inherit';
 	input.focus()
 
 	var puzzle1 = {
@@ -132,7 +141,7 @@ start.onclick = function(){
 	function generateBackground(){
 		var randPuzzle = Math.floor(Math.random() * puzzleArr.length);
 		chosen = puzzleArr[randPuzzle];
-		console.log(puzzleArr[randPuzzle]);
+		//console.log(chosen);
 	}
 
 	function generatePieces(){
@@ -175,7 +184,7 @@ start.onclick = function(){
 		input.value = '';
 		container.style.backgroundImage = "url(" + chosen.imgsrc + ")";
 		arr = [];
-		console.log(arr)	
+		//console.log(arr)	
 		container.innerHTML = "";
 		generatePieces();
 		resetInterval();
@@ -185,10 +194,32 @@ start.onclick = function(){
 	}
 
 	function doStuff(){
+		timer.innerHTML = 'Time Left: 0 seconds'
+		setTimeout(function(){
 		alert('Your score was ' + score + '. Click OK to play again...')
 		score = 1;
 		startOver();
 		setTimeout(doStuff, 60000);
 		input.focus()
-	}	
+		timeLeft = 60;
+		timeKeeper = setInterval(timeCheck, 1000)
+		timer.innerHTML = 'Time Left: 60 seconds'
+		}, 100)
+
+	}
+
+	function timeCheck(){
+		//console.log(timeLeft)
+		timeLeft--;
+		timer.innerHTML = 'Time Left: ' + timeLeft + ' seconds'
+		if (timeLeft == 0) {
+			timeKeeper = clearInterval(timeKeeper)
+		}
+	}
+
+	change.addEventListener('click', function(){
+		alert('The Pokemon was ' + chosen.answer)
+		startOver();
+		input.focus()
+	})	
 }
